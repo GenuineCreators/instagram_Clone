@@ -7,7 +7,7 @@ import 'package:instagram_clone/pages/splash_screen.dart';
 // ignore: unused_import
 import 'pages/home_screen.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());

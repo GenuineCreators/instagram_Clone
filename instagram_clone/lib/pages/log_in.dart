@@ -1,10 +1,33 @@
-// ignore_for_file: sort_child_properties_last, unnecessary_new
+// ignore_for_file: sort_child_properties_last, unnecessary_new, must_be_immutable, prefer_final_fields, unused_element, avoid_print, use_build_context_synchronously
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/pages/home_screen.dart';
 import 'package:instagram_clone/pages/sign_up.dart';
 
 class LogIn extends StatelessWidget {
-  const LogIn({super.key});
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+  LogIn({super.key});
+
+  void _signInWithEmailAndPassword(BuildContext context) async {
+    try {
+      await _auth.signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text,
+      );
+      // Navigate to the home screen after successful login
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+      );
+    } catch (e) {
+      print('Error signing in: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +80,7 @@ class LogIn extends StatelessWidget {
         new SizedBox(
           width: 350,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () => _signInWithEmailAndPassword(context),
             child: Text(
               'Log in',
               style: TextStyle(
