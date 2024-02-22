@@ -12,8 +12,8 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Profiles Page'),
+    return Scaffold(
+      appBar: AppBar(title: Text('Profile Pic')),
     );
   }
 }

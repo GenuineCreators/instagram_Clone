@@ -7,8 +7,23 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Home Page'),
+    return Padding(
+      padding: const EdgeInsets.only(top: 18),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Instagram'),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.favorite_border_outlined),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: Icon(Icons.message_rounded),
+              onPressed: () {},
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -1,10 +1,10 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_import
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/pages/profile_pic.dart';
 import 'package:instagram_clone/pages/splash_screen.dart';
 
-// ignore: unused_import
 import 'pages/home_screen.dart';
 
 void main() async {
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Instagram Clone",
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: ProfilePic(),
     );
   }
 }
