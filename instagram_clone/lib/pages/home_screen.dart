@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/pages/home_page.dart';
-import 'package:instagram_clone/pages/new_page.dart';
+import 'package:instagram_clone/pages/new_post.dart';
 import 'package:instagram_clone/pages/profile_page.dart';
 import 'package:instagram_clone/pages/reel_page.dart';
 import 'package:instagram_clone/pages/search_page.dart';
@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   static List<Widget> _widgetOptions = <Widget>[
     HomePage(),
     SearchPage(),
-    NewPage(),
+    NewPost(),
     ReelPage(),
     ProfilePage(),
   ];

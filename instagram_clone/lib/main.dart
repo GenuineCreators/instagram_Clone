@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Instagram Clone",
       debugShowCheckedModeBanner: false,
-      home: ProfilePic(),
+      home: SplashScreen(),
     );
   }
 }
