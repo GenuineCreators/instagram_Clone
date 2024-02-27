@@ -1,11 +1,14 @@
-// ignore_for_file: prefer_const_constructors, deprecated_member_use, prefer_const_literals_to_create_immutables, unused_element, unused_import, annotate_overrides
+// ignore_for_file: prefer_const_constructors, deprecated_member_use, prefer_const_literals_to_create_immutables, unused_element, unused_import, annotate_overrides, use_build_context_synchronously, avoid_print
 
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:instagram_clone/pages/home_page.dart';
+import 'package:instagram_clone/pages/profile_pic.dart';
 import 'package:instagram_clone/services/pick_image.dart';
 
 class NewPost extends StatefulWidget {
@@ -75,9 +78,7 @@ class _NewPostState extends State<NewPost> {
                         primary: Colors.blue, // Background color
                         onPrimary: Colors.white, // Text color
                       ),
-                      onPressed: () {
-                        // Add your button onPressed logic here
-                      },
+                      onPressed: () => _uploadImageToFirebase(context),
                       child: Text(
                         'Share',
                         style: TextStyle(
@@ -162,6 +163,36 @@ class _NewPostState extends State<NewPost> {
             ],
           );
         });
+  }
+
+  Future<void> _uploadImageToFirebase(BuildContext context) async {
+    if (_file == null) return;
+
+    final String fileName = DateTime.now().millisecondsSinceEpoch.toString();
+    final Reference storageReference =
+        FirebaseStorage.instance.ref().child('newpost/$fileName.png');
+
+    try {
+      await storageReference.putData(_file!);
+      final String downloadUrl = await storageReference.getDownloadURL();
+      final String description = _descriptionController.text.trim();
+
+      // Store downloadUrl and description in Firestore
+      await FirebaseFirestore.instance.collection('posts').add({
+        'imageUrl': downloadUrl,
+        'description': description,
+        'timestamp': Timestamp.now(),
+      });
+
+      _file == null;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Upload successful.'),
+      ));
+    } catch (e) {
+      print('Error uploading image to Firebase Storage: $e');
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Failed to upload image.')));
+    }
   }
 
   // Future _pickImageFromGallery() async {
