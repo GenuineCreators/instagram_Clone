@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last, unnecessary_new, prefer_const_literals_to_create_immutables, prefer_final_fields, unused_field, unused_local_variable, use_build_context_synchronously, must_be_immutable
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, unnecessary_new, prefer_const_literals_to_create_immutables, prefer_final_fields, unused_field, unused_local_variable, use_build_context_synchronously, must_be_immutable, avoid_print
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +13,47 @@ class SignUp extends StatelessWidget {
   TextEditingController _passwordController = TextEditingController();
 
   SignUp({super.key});
+
+//   void _signUpWithEmailAndPassword(BuildContext context) async {
+//     try {
+//       UserCredential userCredential =
+//           await _auth.createUserWithEmailAndPassword(
+//         email: _emailController.text.trim(),
+//         password: _passwordController.text,
+//       );
+
+//       // Optionally, you can update the user's display name
+//       await userCredential.user?.updateDisplayName(_usernameController.text);
+
+//       // Store user details in Firestore
+//       storeUserDetails(userCredential.user, _usernameController.text);
+
+//       Navigator.pushReplacement(
+//         context,
+//         MaterialPageRoute(builder: (context) => HomeScreen()),
+//       );
+//     } catch (e) {
+//       print('Error signing up: $e');
+//     }
+//   }
+
+// // Function to store user details in Firestore after authentication
+//   void storeUserDetails(User? user, String username) async {
+//     if (user != null) {
+//       // Access Firestore instance
+//       FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+//       try {
+//         // Create a document for the user using their UID
+//         await firestore.collection('users').doc(user.uid).set({
+//           'username': username,
+//           // You can add other user details here
+//         });
+//       } catch (e) {
+//         print('Error storing user details: $e');
+//       }
+//     }
+//   }
 
   void _signUpWithEmailAndPassword(BuildContext context) async {
     try {
