@@ -149,9 +149,7 @@ class _NewPostState extends State<NewPost> {
               //Option to cancel
               SimpleDialogOption(
                 padding: EdgeInsets.all(20),
-                onPressed: () {
-                  HomePage();
-                },
+                onPressed: () {},
                 child: Row(
                   children: [
                     Icon(Icons.cancel),
