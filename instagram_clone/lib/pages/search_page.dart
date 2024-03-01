@@ -24,7 +24,7 @@ class SearchPage extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 20.0),
+        padding: const EdgeInsets.only(top: 20),
         child: FutureBuilder(
           future: FirebaseFirestore.instance.collection('posts').get(),
           builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
